@@ -9,7 +9,7 @@ export default function AddProductButton({ product }: { product: Product }) {
   return (
     <button
       type="button"
-      className="absolute top-5 -right-3"
+      className="absolute top-5 -right-3 cursor-pointer"
       onClick={() => addToCart(product)}
     >
       <svg
