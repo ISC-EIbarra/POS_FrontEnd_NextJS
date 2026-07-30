@@ -5,6 +5,7 @@ import {
   OrderSchema,
   SuccessResponseSchema,
 } from '@/src/schemas';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function submitOrder(data: unknown) {
   const order = OrderSchema.parse(data);
@@ -28,6 +29,8 @@ export async function submitOrder(data: unknown) {
   }
 
   const success = SuccessResponseSchema.parse(json);
+  // revalidateTag('products-by-category', 'max');
+  revalidatePath('/(store)/[categoryId]', 'page');
 
   return {
     errors: [],
