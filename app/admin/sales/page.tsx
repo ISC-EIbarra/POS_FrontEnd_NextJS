@@ -1,5 +1,6 @@
 import TransactionFilter from '@/components/transactions/TransactionFilter';
 import Heading from '@/components/ui/Heading';
+import { getSalesByDate } from '@/src/api';
 import {
   QueryClient,
   dehydrate,
@@ -7,16 +8,16 @@ import {
 } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
-export default function SalesPage() {
+export default async function SalesPage() {
   const queryClient = new QueryClient();
 
   const today = new Date();
   const formattedDate = format(today, 'yyyy-MM-dd');
 
-  // await queryClient.prefetchQuery({
-  //   queryKey: ['sales', formattedDate],
-  //   queryFn:
-  // });
+  await queryClient.prefetchQuery({
+    queryKey: ['sales', formattedDate],
+    queryFn: () => getSalesByDate(formattedDate),
+  });
 
   return (
     <>
