@@ -5,7 +5,7 @@ import {
   OrderSchema,
   SuccessResponseSchema,
 } from '@/src/schemas';
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 export async function submitOrder(data: unknown) {
   const order = OrderSchema.parse(data);
